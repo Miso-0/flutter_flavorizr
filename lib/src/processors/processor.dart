@@ -34,8 +34,8 @@ import 'package:flutter_flavorizr/src/processors/android/build_gradle/android_fl
 import 'package:flutter_flavorizr/src/processors/android/icons/android_icons_processor.dart';
 import 'package:flutter_flavorizr/src/processors/commons/abstract_processor.dart';
 import 'package:flutter_flavorizr/src/processors/commons/apply_processor_by_existing_file_processor.dart';
-import 'package:flutter_flavorizr/src/processors/commons/copy_file_processor.dart';
-import 'package:flutter_flavorizr/src/processors/commons/copy_folder_processor.dart';
+import 'package:flutter_flavorizr/src/processors/commons/skip_if_exists_copy_file_processor.dart';
+import 'package:flutter_flavorizr/src/processors/commons/skip_if_exists_copy_folder_processor.dart';
 import 'package:flutter_flavorizr/src/processors/commons/delete_file_processor.dart';
 import 'package:flutter_flavorizr/src/processors/commons/download_file_processor.dart';
 import 'package:flutter_flavorizr/src/processors/commons/dynamic_file_string_processor.dart';
@@ -274,19 +274,19 @@ class Processor extends AbstractProcessor<void> {
             config: flavorizr,
             logger: logger,
           ),
-      'flutter:app': () => CopyFileProcessor(
+      'flutter:app': () => SkipIfExistsCopyFileProcessor(
             K.tempFlutterAppPath,
             K.flutterAppPath,
             config: flavorizr,
             logger: logger,
           ),
-      'flutter:pages': () => CopyFolderProcessor(
+      'flutter:pages': () => SkipIfExistsCopyFolderProcessor(
             K.tempFlutterPagesPath,
             K.flutterPagesPath,
             config: flavorizr,
             logger: logger,
           ),
-      'flutter:main': () => CopyFileProcessor(
+      'flutter:main': () => SkipIfExistsCopyFileProcessor(
             K.tempFlutterMainPath,
             K.flutterMainPath,
             config: flavorizr,
